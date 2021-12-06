@@ -17,4 +17,9 @@ CHIP PC {
 
     PARTS:
     // Put your code here:
+    Inc16(in=storeda, out=ainc);
+    Mux16(a=storeda, b=ainc, sel=inc, out=step1);
+    Mux16(a=step1, b=in, sel=load, out=step2);
+    Mux16(a=step2, b=false, sel=reset, out=stor);
+    Register(in=stor, load=true, out=storeda, out=out);
 }
